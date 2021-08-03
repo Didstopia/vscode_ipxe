@@ -1,0 +1,10 @@
+{{define "test.yaml" -}}
+
+foo:
+  bar:
+  - foo
+  - bar
+
+bar: true
+
+{{end}}

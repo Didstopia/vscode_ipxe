@@ -1,0 +1,12 @@
+#!ipxe
+
+echo This is a test script for iPXE
+
+set dummy-url http://does.not.exist
+
+chain http://does.not.exist/foo?bar=dummy
+imgfree
+
+kernel ${dummy-url}/vmlinuz ${dummyargs}
+initrd ${dummy-url}/initrd
+boot

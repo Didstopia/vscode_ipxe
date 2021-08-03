@@ -1,0 +1,103 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "ipxe",
+  "firstLineMatch": "^\\s*{{define.+-}}",
+  "patterns": [
+    {
+      "explanation": "Line continuation",
+      "match": "\\s*\\\\s*$",
+      "name": "constant.character.escape"
+    },
+    {
+      "match": "#.*",
+      "name": "comment.line.number-sign"
+    },
+    { "include": "#keywords" },
+    { "include": "#strings" },
+    { "include": "#variable" }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.other.EnclosingTags.slc",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(define|end)\\b"
+        },
+        {
+          "name": "keyword.other.Variables.slc",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b({{\\..*}})\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.slc",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.slc",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "entity.other.attribute-name.label",
+          "match": "(?<=^\\s*):\\w[\\x21-\\x7e]*"
+        },
+        {
+          "explanation": "command-line options (e.g. `--no-links` or `-c`)",
+          "match": "\\B-[^\\s=]+",
+          "name": "entity.other.attribute-name.cli_para"
+        },
+        {
+          "explanation": "SAN URI is defined by RFC 4173 - iSCSI",
+          "match": "\\biscsi:([^:]+):([^:]*):(\\d*):(\\d*):(iqn\\.\\d{4}-\\d{2}\\.[^:]+):\\S+",
+          "name": "entity.other.attribute-name.iscsi",
+          "captures": {
+            "1": { "name": "string.quoted.single.servername" },
+            "2": { "name": "string.quoted.double.protocol" },
+            "3": { "name": "string.quoted.double.port" },
+            "4": { "name": "string.quoted.double.lun" },
+            "5": { "name": "string.quoted.triple.iqn" }
+          }
+        },
+        {
+          "explanation": "SAN URI is defined by RFC 4173 - AoE",
+          "match": "\\baoe:e\\d.\\d\\b",
+          "name": "entity.other.attribute-name.aoe"
+        },
+        {
+          "explanation": "SAN URI is defined by RFC 4173 - FCP",
+          "match": "\\bfcp:([0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}):(\\d)\\b",
+          "name": "entity.other.attribute-name.iscsi",
+          "captures": {
+            "1": { "name": "string.quoted.single.wwn" },
+            "2": { "name": "string.quoted.double.lun" }
+          }
+        }
+      ]
+    },
+    "variable": {
+      "patterns": [
+        {
+          "name": "support.variable.setting.slc",
+          "begin": "(?<=\\$\\{)",
+          "end": "(?=\\})",
+          "patterns": [
+            {
+              "name": "constant.character.escape.slc",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "support.type.setting.slc",
+          "match": "\\b:\\w+\\b"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.slc"
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "ipxe",
-  "firstLineMatch" :"^\\s*#!ipxe",
+  "firstLineMatch": "^\\s*#!ipxe",
   "patterns": [
     {
       "explanation": "Line continuation",
@@ -12,65 +12,65 @@
       "match": "#.*",
       "name": "comment.line.number-sign"
     },
-    {"include": "#keywords"},
-    {"include": "#strings"},
-    {"include": "#variable"}
+    { "include": "#keywords" },
+    { "include": "#strings" },
+    { "include": "#variable" }
   ],
   "repository": {
     "keywords": {
       "patterns": [
         {
-        "name": "keyword.other.Boot.ipxe",
-        "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(autoboot)\\b"
+          "name": "keyword.other.Boot.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(autoboot)\\b"
         },
         {
-        "name": "keyword.other.Network.ipxe",
-        "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(ifstat|ifopen|ifclose|ifconf|dhcp|route|nstat|ipstat|vcreate|vdestroy)\\b"
+          "name": "keyword.other.Network.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(ifstat|ifopen|ifclose|ifconf|dhcp|route|nstat|ipstat|vcreate|vdestroy)\\b"
         },
         {
           "name": "keyword.other.Image.ipxe",
           "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(imgstat|chain|imgexec|boot|imgfetch|module|initrd|kernel|imgselect|imgload|imgfree|imgargs|imgtrust|imgverify)\\b"
-          },
-          {
-            "name": "keyword.other.SAN.ipxe",
-            "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(sanhook|sanboot|fcstat|fcels)\\b"
-          },
-          {
-            "name": "keyword.other.Configuration.ipxe",
-            "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(config|show|set|clear|read|inc|login)\\b"
-          },
-          {
-            "name": "keyword.control.Flow.ipxe",
-            "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(isset|iseq|goto|exit)\\b"
-          },
-          {
-            "name": "keyword.control.Oprator.ipxe",
-            "match": "[&|]{2}"
-          },
-          {
-            "name": "keyword.other.Menu.ipxe",
-            "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(menu|item|choose)\\b"
-          },
-          {
-            "name": "keyword.other.Certificate.ipxe",
-            "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(certstat|certstore|certfree)\\b"
-          },
-          {
-            "name": "keyword.other.Console.ipxe",
-            "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(console|colour|cpair)\\b"
-          },
-          {
-            "name": "keyword.other.Form.ipxe",
-            "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(params|param)\\b"
-          },
-          {
-            "name": "keyword.other.Miscellaneous.ipxe",
-            "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(echo|prompt|shell|help|sleep|reboot|poweroff|cpuid|sync|nslookup|ping|ntp|pciscan)\\b"
-          },
-          {
-            "name": "keyword.other.Obscure.ipxe",
-            "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(lotest|pxebs|time|gdbstub|profstat)\\b"
-          }
+        },
+        {
+          "name": "keyword.other.SAN.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(sanhook|sanboot|fcstat|fcels)\\b"
+        },
+        {
+          "name": "keyword.other.Configuration.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(config|show|set|clear|read|inc|login)\\b"
+        },
+        {
+          "name": "keyword.control.Flow.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(isset|iseq|goto|exit)\\b"
+        },
+        {
+          "name": "keyword.control.Oprator.ipxe",
+          "match": "[&|]{2}"
+        },
+        {
+          "name": "keyword.other.Menu.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(menu|item|choose)\\b"
+        },
+        {
+          "name": "keyword.other.Certificate.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(certstat|certstore|certfree)\\b"
+        },
+        {
+          "name": "keyword.other.Console.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(console|colour|cpair)\\b"
+        },
+        {
+          "name": "keyword.other.Form.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(params|param)\\b"
+        },
+        {
+          "name": "keyword.other.Miscellaneous.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(echo|prompt|shell|help|sleep|reboot|poweroff|cpuid|sync|nslookup|ping|ntp|pciscan)\\b"
+        },
+        {
+          "name": "keyword.other.Obscure.ipxe",
+          "match": "(?<=(^|[&|]{2}|;)\\s*)\\b(lotest|pxebs|time|gdbstub|profstat)\\b"
+        }
       ]
     },
     "strings": {
@@ -100,11 +100,11 @@
           "match": "\\biscsi:([^:]+):([^:]*):(\\d*):(\\d*):(iqn\\.\\d{4}-\\d{2}\\.[^:]+):\\S+",
           "name": "entity.other.attribute-name.iscsi",
           "captures": {
-            "1": {"name": "string.quoted.single.servername"},
-            "2": {"name": "string.quoted.double.protocol"},
-            "3": {"name": "string.quoted.double.port"},
-            "4": {"name": "string.quoted.double.lun"},
-            "5": {"name": "string.quoted.triple.iqn"}
+            "1": { "name": "string.quoted.single.servername" },
+            "2": { "name": "string.quoted.double.protocol" },
+            "3": { "name": "string.quoted.double.port" },
+            "4": { "name": "string.quoted.double.lun" },
+            "5": { "name": "string.quoted.triple.iqn" }
           }
         },
         {
@@ -117,8 +117,8 @@
           "match": "\\bfcp:([0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}):(\\d)\\b",
           "name": "entity.other.attribute-name.iscsi",
           "captures": {
-            "1": {"name": "string.quoted.single.wwn"},
-            "2": {"name": "string.quoted.double.lun"}
+            "1": { "name": "string.quoted.single.wwn" },
+            "2": { "name": "string.quoted.double.lun" }
           }
         }
       ]
@@ -143,5 +143,5 @@
       ]
     }
   },
-  "scopeName": "ipxe"
+  "scopeName": "source.ipxe"
 }

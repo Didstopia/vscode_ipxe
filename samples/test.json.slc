@@ -1,0 +1,7 @@
+{{define "test.json" -}}
+
+{
+  "foo": "bar"
+}
+
+{{end}}

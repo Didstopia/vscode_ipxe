@@ -1,0 +1,66 @@
+{
+  "name": "ipxe-syntax-highlighter",
+  "displayName": "iPXE Syntax Highlighter for Visual Studio Code",
+  "description": "This extension adds syntax highlighting for both [iPXE](https://ipxe.org/) scripts and [Shoelaces](https://github.com/thousandeyes/shoelaces) template files.",
+  "version": "0.0.1",
+  "publisher": "Didstopia",
+  "repository": {
+    "url": "https://github.com/Didstopia/vscode_ipxe"
+  },
+  "engines": {
+    "vscode": "^1.45.0"
+  },
+  "license": "LICENSE",
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "ipxe",
+        "aliases": [
+          "ipxe"
+        ],
+        "extensions": [
+          ".ipxe"
+        ],
+        "configuration": "./ipxe-language-configuration.json"
+      },
+      {
+        "id": "slc",
+        "aliases": [
+          "slc",
+          "shoelaces"
+        ],
+        "extensions": [
+          ".slc"
+        ],
+        "configuration": "./slc-language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "ipxe",
+        "scopeName": "source.ipxe",
+        "path": "./syntaxes/ipxe.tmLanguage.json"
+      },
+      {
+        "language": "slc",
+        "scopeName": "source.slc",
+        "path": "./syntaxes/slc.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.ipxe": "ipxe",
+          "meta.embedded.block.yaml": "yaml",
+          "meta.embedded.block.json": "json"
+        }
+      }
+    ],
+    "snippets": [
+      {
+        "language": "ipxe",
+        "path": "./snippets/ipxe.snippets.json"
+      }
+    ]
+  }
+}

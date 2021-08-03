@@ -1,2 +1,6 @@
-# Specify filepatterns you want git to ignore.
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
 
+# Ignore built VSIX extension files
+*.vsix
