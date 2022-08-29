@@ -14,7 +14,7 @@
     "url": "https://github.com/Didstopia/vscode_ipxe"
   },
   "bugs": "https://github.com/Didstopia/vscode_ipxe/issues",
-  "icon": "icon/icon128.png",
+  "icon": "icons/export128.png",
   "engines": {
     "vscode": "^1.52.0"
   },
