@@ -1,0 +1,40 @@
+name: Update Changelog
+
+on:
+
+  # TODO: Do we need both of these or just one?!  
+
+  # Run on any version tag
+  push:
+    tags:
+      - v*
+
+  # Run when new releases are created
+  release:
+    types: [released]
+
+jobs:
+  update-changelog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.target_commitish }}
+
+      - name: Update Changelog
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          latest-version: ${{ github.event.release.tag_name }}
+          release-notes: ${{ github.event.release.body }}
+
+      - name: Publish Changelog
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: ${{ github.event.release.target_commitish }}
+          commit_message: '[CI] Update CHANGELOG.md'
+          file_pattern: CHANGELOG.md
+
+      # TODO: Should we combine this with the publish + versioning workflow/steps?

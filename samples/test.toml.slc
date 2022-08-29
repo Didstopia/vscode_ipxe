@@ -1,0 +1,24 @@
+{{define "test.toml" -}}
+# This is a comment
+
+title = "Foo"
+
+[bar]
+foo = "Bar"
+bar = 1234
+baz = true
+
+[foo]
+
+[foo.bar]
+qux = [ 1, 2, 3, 4]
+quux = [
+  "one",
+  "two",
+  "three",
+]
+test = {
+  foo = 1.23,
+  bar = "baz"
+}
+{{end}}

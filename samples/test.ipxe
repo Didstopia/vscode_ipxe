@@ -2,11 +2,25 @@
 
 echo This is a test script for iPXE
 
+# This is a comment
+
 set dummy-url http://does.not.exist
 
+:foo
 chain http://does.not.exist/foo?bar=dummy
 imgfree
+goto bar
 
+:bar
 kernel ${dummy-url}/vmlinuz ${dummyargs}
 initrd ${dummy-url}/initrd
-boot
+boot || goto foo
+
+:foobar
+kernel ${dummy-url}/vmlinuz ${dummyargs}
+initrd ${dummy-url}/initrd
+boot || goto foo
+:baz
+kernel ${dummy-url}/vmlinuz ${dummyargs}
+initrd ${dummy-url}/initrd
+boot || goto foo

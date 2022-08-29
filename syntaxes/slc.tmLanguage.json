@@ -1,8 +1,49 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "ipxe",
+  "name": "Shoelaces",
+  "scopeName": "source.slc",
   "firstLineMatch": "^\\s*{{define.+-}}",
   "patterns": [
+    {
+      "contentName": "meta.embedded.block.ipxe",
+      "begin": "#!ipxe",
+      "end": "",
+      "patterns": [
+        {
+          "include": "source.ipxe"
+        }
+      ]
+    },
+    {
+      "contentName": "meta.embedded.block.json",
+      "begin": "{",
+      "end": "}",
+      "patterns": [
+        {
+          "include": "source.json"
+        }
+      ]
+    },
+    {
+      "contentName": "meta.embedded.block.toml",
+      "begin": "\\A\\+{3}\\s*$",
+      "end": "(^|\\G)(?=\\s*[\\+~]{3,}\\s*$)",
+      "patterns": [
+        {
+          "include": "source.toml"
+        }
+      ]
+    },
+    {
+      "contentName": "meta.embedded.block.yaml",
+      "begin": "\\A-{3}\\s*$",
+      "end": "(^|\\G)-{3}|\\.{3}\\s*$",
+      "patterns": [
+        {
+          "include": "source.yaml"
+        }
+      ]
+    },
     {
       "explanation": "Line continuation",
       "match": "\\s*\\\\s*$",
@@ -12,9 +53,15 @@
       "match": "#.*",
       "name": "comment.line.number-sign"
     },
-    { "include": "#keywords" },
-    { "include": "#strings" },
-    { "include": "#variable" }
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#variable"
+    }
   ],
   "repository": {
     "keywords": {
@@ -98,6 +145,5 @@
         }
       ]
     }
-  },
-  "scopeName": "source.slc"
+  }
 }

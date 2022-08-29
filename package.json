@@ -1,42 +1,63 @@
 {
   "name": "ipxe-syntax-highlighter",
-  "displayName": "iPXE Syntax Highlighter for Visual Studio Code",
+  "displayName": "iPXE + Shoelaces Syntax Highlighter for Visual Studio Code",
   "description": "This extension adds syntax highlighting for both [iPXE](https://ipxe.org/) scripts and [Shoelaces](https://github.com/thousandeyes/shoelaces) template files.",
   "version": "0.0.1",
   "publisher": "Didstopia",
+  "scripts": {
+    "build": "vsce package",
+    "list": "echo 'The following files will be included with the package:'; vsce ls",
+    "publish": "vsce publish",
+    "test": "jest"
+  },
   "repository": {
     "url": "https://github.com/Didstopia/vscode_ipxe"
   },
+  "bugs": "https://github.com/Didstopia/vscode_ipxe/issues",
+  "icon": "icon/icon128.png",
   "engines": {
-    "vscode": "^1.45.0"
+    "vscode": "^1.52.0"
   },
   "license": "LICENSE",
   "categories": [
     "Programming Languages",
-    "Snippets"
+    "Linters",
+    "Snippets",
+    "Formatters"
+  ],
+  "keywords": [
+    "pxe",
+    "ipxe",
+    "shoelaces",
+    "slc",
+    "autocompletion",
+    "validation"
   ],
   "contributes": {
     "languages": [
       {
         "id": "ipxe",
         "aliases": [
+          "iPXE",
           "ipxe"
         ],
         "extensions": [
           ".ipxe"
         ],
-        "configuration": "./ipxe-language-configuration.json"
+        "configuration": "./configurations/ipxe-language-configuration.json"
       },
       {
         "id": "slc",
         "aliases": [
+          "Shoelaces",
+          "SLC",
           "slc",
           "shoelaces"
         ],
         "extensions": [
           ".slc"
         ],
-        "configuration": "./slc-language-configuration.json"
+        "configuration": "./configurations/slc-language-configuration.json"
       }
     ],
     "grammars": [
@@ -49,10 +70,17 @@
         "language": "slc",
         "scopeName": "source.slc",
         "path": "./syntaxes/slc.tmLanguage.json",
+        "injectTo": [
+          "source.ipxe",
+          "source.json",
+          "source.toml",
+          "source.yaml"
+        ],
         "embeddedLanguages": {
-          "source.ipxe": "ipxe",
-          "meta.embedded.block.yaml": "yaml",
-          "meta.embedded.block.json": "json"
+          "meta.embedded.block.ipxe": "ipxe",
+          "meta.embedded.block.json": "json",
+          "meta.embedded.block.toml": "toml",
+          "meta.embedded.block.yaml": "yaml"
         }
       }
     ],
@@ -62,5 +90,9 @@
         "path": "./snippets/ipxe.snippets.json"
       }
     ]
+  },
+  "devDependencies": {
+    "jest": "^29.0.1",
+    "vsce": "^2.11.0"
   }
 }

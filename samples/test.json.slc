@@ -1,7 +1,11 @@
 {{define "test.json" -}}
-
 {
-  "foo": "bar"
+  "foo": "bar",
+  "bar": true,
+  "foobar": [
+    1,
+    2,
+    3
+  ]
 }
-
 {{end}}

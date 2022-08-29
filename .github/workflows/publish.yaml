@@ -1,0 +1,37 @@
+name: Publish
+
+on:
+
+  # TODO: Do we need both of these or just one?!
+
+  # Run on any version tag
+  push:
+    tags:
+      - v*
+
+  # Run when new releases are created
+  release:
+    types: [released]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch the full commit history, including all tags etc.
+
+      #
+      # TODO: Continue implementing versionining stuff
+      #       https://github.com/PaulHatch/semantic-version
+      #
+      - name: Application Version
+        id: version
+        uses: paulhatch/semantic-version@v4.0.2
+
+      # TODO: Implement GH release generation, publishing etc.
+
+      # TODO: Should we combine this with the changelog update workflow/step?

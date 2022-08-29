@@ -1,10 +1,14 @@
 {{define "test.yaml" -}}
-
+# This is a comment
 foo:
   bar:
-  - foo
-  - bar
+    - true
+    - false
+  foo: false
+  foobar: "bar"
+  barfoo: 42
 
 bar: true
 
+foobar: "Yeah"
 {{end}}

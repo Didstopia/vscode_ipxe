@@ -1,0 +1,51 @@
+name: Build & Test
+
+on:
+
+  # Run when pushed to any branches
+  push:
+    branches:
+      - '*'
+
+  # Run on all pull requests
+  pull_request:
+    branches:
+      - '*'
+
+  # Run on a schedule once a week, at 0:00 every Sunday
+  schedule:
+    - cron: '0 0 * * 0'
+
+  # Run when manually triggered
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch the full commit history, including all tags etc.
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          # node-version-file: '.nvmrc' # TODO: Is this done automatically?
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+      
+      - name: Build VSIX
+        run: npm run build
+
+      - name: Run Tests
+        run: npm test
+      
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: *.vsix

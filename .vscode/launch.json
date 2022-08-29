@@ -6,12 +6,19 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Extension",
+      "name": "Test Extension",
       "type": "extensionHost",
       "request": "launch",
       "runtimeExecutable": "${execPath}",
       "args": [
-        "--extensionDevelopmentPath=${workspaceFolder}"
+        "${workspaceFolder}/samples/", // Set the "project" folder
+        "${workspaceFolder}/samples/test.ipxe", // Open a sample file by default
+        "${workspaceFolder}/samples/test.ipxe.slc", // Open a sample file by default
+        "${workspaceFolder}/samples/test.json.slc", // Open a sample file by default
+        "${workspaceFolder}/samples/test.toml.slc", // Open a sample file by default
+        "${workspaceFolder}/samples/test.yaml.slc", // Open a sample file by default
+        "--extensionDevelopmentPath=${workspaceFolder}", // Set the development path
+        "--disable-extensions" // Disable other extensions
       ]
     }
   ]

@@ -1,0 +1,56 @@
+// TODO: .ipxe starts with `#!ipxe`
+{
+  // Define line comments
+  "comments": {
+    // Symbol used for single line comment. Remove this entry if your language does not support line comments
+    "lineComment": "#",
+
+    // TODO: Does iPXE support block comments? Probably not, right?
+    // Symbols used for start and end a block comment. Remove this entry if your language does not support block comments
+    // "blockComment": ["/*", "*/"]
+  },
+
+  // Symbols used as brackets
+  "brackets": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"]
+  ],
+
+  // Symbols that are auto closed when typing
+  "autoClosingPairs": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
+    ["\"", "\""],
+    ["'", "'"]
+  ],
+
+  // Symbols that can be used to surround a selection
+  "surroundingPairs": [
+    ["{", "}"],
+    ["[", "]"],
+    ["(", ")"],
+    ["\"", "\""],
+    ["'", "'"]
+  ],
+
+  // Define basic folding rules
+  "folding": {
+    "offSide": true,
+    // FIXME: This is not working at all for some reason, possible issue with our regex?
+    "markers": {
+      // FIXME: This only works if there's a new line between "blocks" (eg. ":foo" and ":bar" at least have a single new line between them)
+      // FIXME: This does NOT work for the last block in the file, due to the missing "end" marker (eg. there's no ":foo" at the end)
+      // "start": "(^:.*)((.|\\s)+?)",
+      // "start": "^\\s*:.*\\b", // TODO: This should definitely work?!
+      "start": "^:(.*|\\s*)*",
+
+      // FIXME: I _think_ the actual problem is in the starting regex?! Because no matter what we do for the end regex, it doesn't work?!
+      // "end": "(?=^(:|(\\s?$)))"
+      // "end": "^\\s*:.*\\b", // TODO: Surely this should work too, since one starts what the other ends?!
+      // "end": "\\s*|.*" // FIXME: This WORKS, except it now only matches the ":foo" line +1 line, not all of the lines in-between!?
+      "end": "^\\s*"
+    }
+  }
+}

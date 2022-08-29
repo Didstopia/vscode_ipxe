@@ -2,5 +2,8 @@
 .DS_Store
 Thumbs.db
 
-# Ignore built VSIX extension files
+# Ignore any built VSIX extension files
 *.vsix
+
+# Ignore node_modules
+node_modules/
