@@ -50,6 +50,7 @@ jobs:
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: ipxe-syntax-highlighter
+          # name: ipxe-syntax-highlighter
+          name: ipxe-syntax-highlighter.zip
           path: ${{ github.workspace }}/*.vsix
           if-no-files-found: error
